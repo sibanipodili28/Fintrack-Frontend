@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Alert, Box, CircularProgress, Grid, List, ListItem, ListItemText, MenuItem, Paper, TextField, Typography } from '@mui/material';
+import { Alert, Box, CircularProgress, Grid, LinearProgress, List, ListItem, ListItemText, MenuItem, Paper, TextField, Typography } from '@mui/material';
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import api, { errorMessage } from '../services/api';
-import type { DashboardRange, DashboardSummary } from '../types';
+import type { BudgetOverview, DashboardRange, DashboardSummary, Goal } from '../types';
 import { formatMoney } from '../utils/format';
 
 const RANGES: { value: DashboardRange; label: string }[] = [
@@ -27,6 +27,13 @@ export default function DashboardPage() {
   const [range, setRange] = useState<DashboardRange>('CURRENT_MONTH');
   const [data, setData] = useState<DashboardSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [budgets, setBudgets] = useState<BudgetOverview | null>(null);
+  const [goals, setGoals] = useState<Goal[]>([]);
+
+  useEffect(() => {
+    api.get<BudgetOverview>('/budgets').then((r) => setBudgets(r.data)).catch(() => setBudgets(null));
+    api.get<Goal[]>('/goals').then((r) => setGoals(r.data.filter((g) => g.status === 'ACTIVE'))).catch(() => setGoals([]));
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -123,6 +130,35 @@ export default function DashboardPage() {
                 ))}
               </List>
             )}
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2.5 }}>
+            <Typography variant="h6" gutterBottom>Budgets this month</Typography>
+            {!budgets || budgets.items.length === 0 ? <Typography color="text.secondary">No budgets set for this month.</Typography> : budgets.items.map((b) => (
+              <Box key={b.id} sx={{ mb: 1.5 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="body2">{b.categoryName}</Typography>
+                  <Typography variant="body2" color="text.secondary">{formatMoney(b.spent)} / {formatMoney(b.amount)}</Typography>
+                </Box>
+                <LinearProgress variant="determinate" value={Math.min(b.utilizationPercent, 100)} aria-label={`${b.categoryName} budget used`}
+                  color={b.status === 'EXCEEDED' ? 'error' : b.status === 'ON_TRACK' ? 'success' : 'warning'} sx={{ height: 6, borderRadius: 3 }} />
+              </Box>
+            ))}
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2.5 }}>
+            <Typography variant="h6" gutterBottom>Savings goals</Typography>
+            {goals.length === 0 ? <Typography color="text.secondary">No active goals.</Typography> : goals.map((g) => (
+              <Box key={g.id} sx={{ mb: 1.5 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="body2">{g.name}{g.overdue ? ' (overdue)' : ''}</Typography>
+                  <Typography variant="body2" color="text.secondary">{g.progressPercent}%</Typography>
+                </Box>
+                <LinearProgress variant="determinate" value={Math.min(g.progressPercent, 100)} aria-label={`${g.name} progress`} sx={{ height: 6, borderRadius: 3 }} />
+              </Box>
+            ))}
           </Paper>
         </Grid>
       </Grid>
