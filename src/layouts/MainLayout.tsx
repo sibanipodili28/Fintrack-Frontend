@@ -10,6 +10,8 @@ import DashboardIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ReceiptIcon from '@mui/icons-material/ReceiptLongOutlined';
 import WalletIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import SwapIcon from '@mui/icons-material/SwapHorizOutlined';
+import BudgetIcon from '@mui/icons-material/PieChartOutlineOutlined';
+import SavingsIcon from '@mui/icons-material/SavingsOutlined';
 import { logout } from '../features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
@@ -19,6 +21,8 @@ const NAV = [
   { to: '/transactions', label: 'Transactions', icon: <ReceiptIcon /> },
   { to: '/accounts', label: 'Accounts', icon: <WalletIcon /> },
   { to: '/transfers', label: 'Transfers', icon: <SwapIcon /> },
+  { to: '/budgets', label: 'Budgets', icon: <BudgetIcon /> },
+  { to: '/goals', label: 'Savings goals', icon: <SavingsIcon /> },
 ];
 
 export default function MainLayout() {

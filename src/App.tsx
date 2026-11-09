@@ -8,6 +8,8 @@ import DashboardPage from './pages/DashboardPage';
 import AccountsPage from './pages/AccountsPage';
 import TransactionsPage from './pages/TransactionsPage';
 import TransfersPage from './pages/TransfersPage';
+import BudgetsPage from './pages/BudgetsPage';
+import GoalsPage from './pages/GoalsPage';
 import { bootstrap } from './features/auth/authSlice';
 import { useAppDispatch } from './store/hooks';
 
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="transactions" element={<TransactionsPage />} />
           <Route path="accounts" element={<AccountsPage />} />
           <Route path="transfers" element={<TransfersPage />} />
+          <Route path="budgets" element={<BudgetsPage />} />
+          <Route path="goals" element={<GoalsPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -27,3 +27,21 @@ export interface DashboardSummary {
   monthlyTrend: { month: string; income: number; expense: number }[];
 }
 export type DashboardRange = 'CURRENT_MONTH' | 'PREVIOUS_MONTH' | 'LAST_3_MONTHS' | 'LAST_6_MONTHS' | 'CURRENT_YEAR';
+
+export type BudgetStatus = 'ON_TRACK' | 'NEAR_LIMIT' | 'LIMIT_REACHED' | 'EXCEEDED';
+export interface BudgetItem {
+  id: number; categoryId: number; categoryName: string; amount: number; spent: number;
+  remaining: number; utilizationPercent: number; status: BudgetStatus;
+}
+export interface BudgetOverview {
+  month: string; totalAllocated: number; totalSpent: number; totalRemaining: number;
+  utilizationPercent: number; items: BudgetItem[]; alerts: string[];
+}
+export interface BudgetHistoryPoint { month: string; allocated: number; spent: number }
+
+export interface Goal {
+  id: number; name: string; targetAmount: number; savedAmount: number; remainingAmount: number;
+  progressPercent: number; targetDate: string | null; status: 'ACTIVE' | 'COMPLETED'; overdue: boolean;
+  createdAt: string; completedAt: string | null;
+}
+export interface Contribution { id: number; amount: number; date: string; note?: string; createdAt: string }
