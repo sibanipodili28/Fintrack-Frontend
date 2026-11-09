@@ -45,3 +45,14 @@ export interface Goal {
   createdAt: string; completedAt: string | null;
 }
 export interface Contribution { id: number; amount: number; date: string; note?: string; createdAt: string }
+
+export type Frequency = 'DAILY' | 'WEEKLY' | 'MONTHLY';
+export type RecurringStatus = 'ACTIVE' | 'PAUSED' | 'CANCELLED' | 'ENDED';
+export interface Recurring {
+  id: number; accountId: number; accountName: string; categoryId: number; categoryName: string; type: TransactionType;
+  amount: number; description?: string; frequency: Frequency; startDate: string; endDate: string | null;
+  nextExecutionDate: string; status: RecurringStatus; createdAt: string;
+}
+export interface RecurringExecution { id: number; scheduledDate: string; status: 'SUCCESS' | 'FAILED'; transactionId: number | null; message?: string; executedAt: string }
+
+export interface AppNotification { id: number; type: string; title: string; message: string; read: boolean; createdAt: string }
