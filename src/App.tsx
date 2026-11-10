@@ -12,8 +12,11 @@ import BudgetsPage from './pages/BudgetsPage';
 import GoalsPage from './pages/GoalsPage';
 import RecurringPage from './pages/RecurringPage';
 import NotificationsPage from './pages/NotificationsPage';
+<<<<<<< HEAD
 import AnalyticsPage from './pages/AnalyticsPage';
 import ReportsPage from './pages/ReportsPage';
+=======
+>>>>>>> c71131119096b39c02bd6989eebcd0f27c0eb175
 import { bootstrap } from './features/auth/authSlice';
 import { useAppDispatch } from './store/hooks';
 
@@ -33,8 +36,11 @@ export default function App() {
           <Route path="transfers" element={<TransfersPage />} />
           <Route path="budgets" element={<BudgetsPage />} />
           <Route path="goals" element={<GoalsPage />} />
+<<<<<<< HEAD
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="reports" element={<ReportsPage />} />
+=======
+>>>>>>> c71131119096b39c02bd6989eebcd0f27c0eb175
           <Route path="recurring" element={<RecurringPage />} />
           <Route path="notifications" element={<NotificationsPage />} />
         </Route>
