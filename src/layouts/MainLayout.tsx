@@ -12,11 +12,8 @@ import WalletIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import SwapIcon from '@mui/icons-material/SwapHorizOutlined';
 import BudgetIcon from '@mui/icons-material/PieChartOutlineOutlined';
 import SavingsIcon from '@mui/icons-material/SavingsOutlined';
-<<<<<<< HEAD
 import AnalyticsIcon from '@mui/icons-material/InsightsOutlined';
 import ReportIcon from '@mui/icons-material/DescriptionOutlined';
-=======
->>>>>>> c71131119096b39c02bd6989eebcd0f27c0eb175
 import RepeatIcon from '@mui/icons-material/EventRepeatOutlined';
 import BellIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import api from '../services/api';
@@ -33,11 +30,8 @@ const NAV = [
   { to: '/budgets', label: 'Budgets', icon: <BudgetIcon /> },
   { to: '/goals', label: 'Savings goals', icon: <SavingsIcon /> },
   { to: '/recurring', label: 'Recurring', icon: <RepeatIcon /> },
-<<<<<<< HEAD
   { to: '/analytics', label: 'Analytics', icon: <AnalyticsIcon /> },
   { to: '/reports', label: 'Reports', icon: <ReportIcon /> },
-=======
->>>>>>> c71131119096b39c02bd6989eebcd0f27c0eb175
   { to: '/notifications', label: 'Notifications', icon: <BellIcon /> },
 ];
 

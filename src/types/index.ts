@@ -56,7 +56,6 @@ export interface Recurring {
 export interface RecurringExecution { id: number; scheduledDate: string; status: 'SUCCESS' | 'FAILED'; transactionId: number | null; message?: string; executedAt: string }
 
 export interface AppNotification { id: number; type: string; title: string; message: string; read: boolean; createdAt: string }
-<<<<<<< HEAD
 
 export interface MonthPoint { month: string; income: number; expense: number; savings: number }
 export interface AnalyticsOverview {
@@ -71,5 +70,3 @@ export interface ReportData {
   title: string; subtitle: string | null; columns: string[]; rows: (string | number | null)[][];
   summary: { label: string; value: string | number }[];
 }
-=======
->>>>>>> c71131119096b39c02bd6989eebcd0f27c0eb175
